@@ -7,11 +7,13 @@ const initialState = {
   searchResults: [],
 };
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 export const getSearchResults = createAsyncThunk(
   "/order/getSearchResults",
   async (keyword) => {
     const response = await axios.get(
-      `https://e-commerce-backend-umng.onrender.com/api/shop/search/${keyword}`
+      `${baseUrl}/api/shop/search/${keyword}`
     );
 
     return response.data;

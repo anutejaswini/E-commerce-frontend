@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const baseUrl = import.meta.env.VITE_API_URL;
 const initialState = {
   isLoading: false,
   featureImageList: [],
@@ -10,7 +11,7 @@ export const getFeatureImages = createAsyncThunk(
   "/order/getFeatureImages",
   async () => {
     const response = await axios.get(
-      `https://e-commerce-backend-umng.onrender.com/api/common/feature/get`
+      `${baseUrl}/api/common/feature/get`
     );
 
     return response.data;
@@ -21,7 +22,7 @@ export const addFeatureImage = createAsyncThunk(
   "/order/addFeatureImage",
   async (image) => {
     const response = await axios.post(
-      `https://e-commerce-backend-umng.onrender.com/api/common/feature/add`,
+      `${baseUrl}/api/common/feature/add`,
       { image }
     );
 

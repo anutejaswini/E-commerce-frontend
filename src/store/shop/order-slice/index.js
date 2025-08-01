@@ -9,11 +9,13 @@ const initialState = {
   orderDetails: null,
 };
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 export const createNewOrder = createAsyncThunk(
   "/order/createNewOrder",
   async (orderData) => {
     const response = await axios.post(
-      "https://e-commerce-backend-umng.onrender.com/api/shop/order/create",
+      `${baseUrl}/api/shop/order/create`,
       orderData
     );
 
@@ -25,7 +27,7 @@ export const capturePayment = createAsyncThunk(
   "/order/capturePayment",
   async ({ paymentId, payerId, orderId }) => {
     const response = await axios.post(
-      "https://e-commerce-backend-umng.onrender.com/api/shop/order/capture",
+      `${baseUrl}/api/shop/order/capture`,
       {
         paymentId,
         payerId,
@@ -41,7 +43,7 @@ export const getAllOrdersByUserId = createAsyncThunk(
   "/order/getAllOrdersByUserId",
   async (userId) => {
     const response = await axios.get(
-      `https://e-commerce-backend-umng.onrender.com/api/shop/order/list/${userId}`
+      `${baseUrl}/api/shop/order/list/${userId}`
     );
 
     return response.data;
@@ -52,7 +54,7 @@ export const getOrderDetails = createAsyncThunk(
   "/order/getOrderDetails",
   async (id) => {
     const response = await axios.get(
-      `https://e-commerce-backend-umng.onrender.com/api/shop/order/details/${id}`
+      `${baseUrl}/api/shop/order/details/${id}`
     );
 
     return response.data;

@@ -6,11 +6,13 @@ const initialState = {
   reviews: [],
 };
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 export const addReview = createAsyncThunk(
   "/order/addReview",
   async (formdata) => {
     const response = await axios.post(
-      `https://e-commerce-backend-umng.onrender.com/api/shop/review/add`,
+      `${baseUrl}/api/shop/review/add`,
       formdata
     );
 
@@ -20,7 +22,7 @@ export const addReview = createAsyncThunk(
 
 export const getReviews = createAsyncThunk("/order/getReviews", async (id) => {
   const response = await axios.get(
-    `https://e-commerce-backend-umng.onrender.com/api/shop/review/${id}`
+    `${baseUrl}/api/shop/review/${id}`
   );
 
   return response.data;

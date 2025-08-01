@@ -7,11 +7,13 @@ const initialState = {
   orderDetails: null,
 };
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 export const getAllOrdersForAdmin = createAsyncThunk(
   "/order/getAllOrdersForAdmin",
   async () => {
     const response = await axios.get(
-      `https://e-commerce-backend-umng.onrender.com/api/admin/orders/get`
+      `${baseUrl}/api/admin/orders/get`
     );
 
     return response.data;
@@ -22,7 +24,7 @@ export const getOrderDetailsForAdmin = createAsyncThunk(
   "/order/getOrderDetailsForAdmin",
   async (id) => {
     const response = await axios.get(
-      `https://e-commerce-backend-umng.onrender.com/api/admin/orders/details/${id}`
+      `${baseUrl}/api/admin/orders/details/${id}`
     );
 
     return response.data;
@@ -33,7 +35,7 @@ export const updateOrderStatus = createAsyncThunk(
   "/order/updateOrderStatus",
   async ({ id, orderStatus }) => {
     const response = await axios.put(
-      `https://e-commerce-backend-umng.onrender.com/api/admin/orders/update/${id}`,
+      `${baseUrl}/api/admin/orders/update/${id}`,
       {
         orderStatus,
       }
